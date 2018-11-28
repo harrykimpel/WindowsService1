@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension xmlns="urn:newrelic-extension">
+    <instrumentation>
+        <!-- Define the method which triggers the creation of a transaction. -->
+        <!--<tracerFactory name="NewRelic.Agent.Core.Tracer.Factories.BackgroundThreadTracerFactory" metricName="Background/OnTimer">-->
+		<tracerFactory name="NewRelic.Agent.Core.Tracer.Factories.BackgroundThreadTracerFactory" metricName="WinSvc1/OnTimer">
+          <match assemblyName="WindowsService1" className="WindowsService1.MyNewService1">
+            <exactMethodMatcher methodName="OnTimer" />
+          </match>
+        </tracerFactory>
+		<tracerFactory name="NewRelic.Agent.Core.Tracer.Factories.BackgroundThreadTracerFactory" metricName="WinSvc1/ExecutionSteps">
+          <match assemblyName="WindowsService1" className="WindowsService1.MyNewService1">
+            <exactMethodMatcher methodName="ExecutionSteps" />
+          </match>
+        </tracerFactory>
+		<tracerFactory name="NewRelic.Agent.Core.Tracer.Factories.BackgroundThreadTracerFactory" metricName="WinSvc1/ExecutionStep">
+          <match assemblyName="WindowsService1" className="WindowsService1.MyNewService1">
+            <exactMethodMatcher methodName="ExecutionStep" />
+          </match>
+        </tracerFactory>
+        <!-- Instrument 0 or more methods called by the trigger method. These methods appear in the transaction breakdown table and in transaction traces. -->
+        <tracerFactory name="NewRelic.Agent.Core.Tracer.Factories.BackgroundThreadTracerFactory" metricName="Background/DoSomeHeavyLifting">
+          <match assemblyName="WindowsService1" className="WindowsService1.MyNewService1">
+            <exactMethodMatcher methodName="DoSomeHeavyLifting" />
+          </match>
+        </tracerFactory>
+    </instrumentation>
+</extension>
